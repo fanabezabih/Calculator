@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etNum1" />
 
     <Button
-        android:id="@+id/btnSubstract"
+        android:id="@+id/btnSubtract"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:text="+"
-        app:layout_constraintEnd_toStartOf="@+id/btnSubstract"
+        app:layout_constraintEnd_toStartOf="@+id/btnSubtract"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNum2" />
@@ -73,8 +73,8 @@
         android:text="x"
         app:layout_constraintEnd_toStartOf="@+id/btnDivide"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnSubstract"
-        app:layout_constraintTop_toTopOf="@+id/btnSubstract" />
+        app:layout_constraintStart_toEndOf="@+id/btnSubtract"
+        app:layout_constraintTop_toTopOf="@+id/btnSubtract" />
 
     <TextView
         android:id="@+id/textView"
@@ -84,7 +84,7 @@
         android:text="Result:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSubstract" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSubtract" />
 
     <TextView
         android:id="@+id/tvResult"

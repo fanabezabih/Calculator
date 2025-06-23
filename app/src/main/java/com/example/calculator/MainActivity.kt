@@ -13,58 +13,101 @@ class MainActivity : AppCompatActivity() {
     lateinit var etNum1:EditText
     lateinit var etNum2:EditText
     lateinit var btnAdd: Button
+    lateinit var btnSubtract:Button
     lateinit var btnMultiply:Button
     lateinit var btnDivide:Button
-    lateinit var btnSubtract:Button
-    lateinit var tvResult:TextView
+    lateinit var tvResult: TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-       castViews()
+
+        castViews()
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
+
     fun castViews(){
-        etNum1=findViewById(R.id.etNum1)
-        etNum2=findViewById(R.id.etNum2)
-        btnAdd=findViewById(R.id.btnAdd)
-        btnDivide=findViewById(R.id.btnDivide)
-        btnSubtract=findViewById(R.id.btnSubstract)
-        btnMultiply=findViewById(R.id.btnMultiply)
-      tvResult=findViewById(R.id.tvResult)
+        etNum1 = findViewById(R.id.etNum1)
+        etNum2= findViewById(R.id.etNum2)
+        btnAdd = findViewById(R.id.btnAdd)
+        btnDivide = findViewById(R.id.btnDivide)
+        btnSubtract = findViewById(R.id.btnSubtract)
+        btnMultiply= findViewById(R.id.btnMultiply)
+        tvResult = findViewById(R.id.tvResult)
     }
 
     override fun onResume() {
         super.onResume()
-        btnAdd.setOnClickListener {
-            var num1 = etNum1.text.toString()
-            var num2 = etNum2.text.toString()
-            var sum = num1.toInt() + num2.toInt()
-            tvResult.text = sum.toString()
-        }
+        btnAdd.setOnClickListener{
 
-        btnSubtract.setOnClickListener {
-            var num1 = etNum1.text.toString()
-            var num2 = etNum2.text.toString()
-            var subtract = num1.toInt() - num2.toInt()
-            tvResult.text = subtract.toString()
+            obtainValues("+")
         }
-        btnDivide.setOnClickListener {
-            var num1 = etNum1.text.toString()
-            var num2 = etNum2.text.toString()
-            var divide = num1.toInt() / num2.toInt()
-            tvResult.text = divide.toString()
+        btnSubtract.setOnClickListener {
+            obtainValues("-")
         }
         btnMultiply.setOnClickListener {
-            var num1 = etNum1.text.toString()
-            var num2 = etNum2.text.toString()
-            var product = num1.toInt() * num2.toInt()
-            tvResult.text = product.toString()
+            obtainValues("x")
+        }
+
+        btnDivide.setOnClickListener {
+            obtainValues("/")
         }
     }
+    fun obtainValues(symbol:String){
+        var num1 = etNum1.text.toString()
+        var num2 = etNum2.text.toString()
 
+
+        if(num1.isBlank()){
+            etNum1.error = "Num 1 is required"
+            return
+        }
+        if(num2.isBlank()){
+            etNum2.error = "Num2 is required"
+            return
+        }
+        performCalculation(symbol, num1, num2)
+
+    }
+
+
+    fun performCalculation(symbol: String, num1:String, num2:String){
+
+        var result =  when(symbol){
+            "+"->  num1.toDouble() + num2.toInt()
+            "-"->   num1.toDouble() - num2.toInt()
+            "x" -> num1.toDouble() * num2.toInt()
+            "/" ->   num1.toDouble()/ num2.toInt()
+            else -> 0.0
+        }
+        tvResult.text = result.toString()
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
